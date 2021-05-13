@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<html>
+   <head>
+
+      <script type = "text/javascript">
+
+         function connectWs() {
+               var ws = new WebSocket("ws://{{ server_address }}/frames");
+               ws.onopen = function() {
+                   console.log("WS open");
+               };
+
+               ws.onmessage = function (evt) {
+                  let dataContainer = document.getElementById("data");
+                  wsData = JSON.parse(evt.data)
+
+                  let imgData = 'data:image/png;base64,' + wsData.frame;
+                  document.getElementById('img') .setAttribute( 'src', imgData);
+               };
+
+               ws.onclose = function() {
+
+                  // websocket is closed.
+                   console.log("Connection is closed...");
+               };
+         }
+      </script>
+
+   </head>
+
+   <body onload="connectWs()">
+   <img id="img" src="" />
+   </body>
+</html>
