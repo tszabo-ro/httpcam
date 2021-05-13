@@ -1,0 +1,6 @@
+This is a small python app to expose a webcam attached to the machine over http and provide a /grab endpoint that saves a frame
+
+Requirements:
+quart
+opencv-python
+
